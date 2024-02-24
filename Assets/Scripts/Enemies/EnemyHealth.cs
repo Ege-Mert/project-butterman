@@ -5,16 +5,26 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     public int enemyHealth = 100;
-    
 
-    public void TakeDamage(int damage){
-        enemyHealth -= damage;
-        
-        if (enemyHealth <= 0){
-            Die();
-        } 
+    public bool IsDead()
+    {
+        return enemyHealth <= 0;
     }
-    void Die(){
+
+    public void TakeDamage(int damage)
+    {
+        enemyHealth -= damage;
+
+        if (IsDead())
+        {
+            Debug.Log("IsDed");
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Ded");
         Destroy(gameObject);
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
     }
 }
