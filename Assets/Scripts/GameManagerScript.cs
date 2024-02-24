@@ -13,12 +13,13 @@ public class GameManagerScript : MonoBehaviour
 
     void Update()
     {
-        if(gameOverUI.activeInHierarchy || gameWonUI.activeInHierarchy){
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        if(gameOverUI.activeInHierarchy || gameWonUI.activeInHierarchy)
+        { Cursor.visible = true;
+         Cursor.lockState = CursorLockMode.None;
         }
-        else{
-        Cursor.visible = true;       
+        else
+        {
+         Cursor.visible = true;       
         }
     }
     public void gameOver(){

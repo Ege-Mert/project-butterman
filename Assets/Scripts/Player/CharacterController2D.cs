@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CharacterController2D : MonoBehaviour
 {
-    private const float MOVE_SPEED = 15f;
+   [SerializeField] private const float MOVE_SPEED = 15f;
 
     private Rigidbody2D rigidbody2D;
     private Vector3 moveDir;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerEvolution : MonoBehaviour
 {
@@ -12,20 +13,24 @@ public class PlayerEvolution : MonoBehaviour
     private int kills = 0;
     private SpriteRenderer spriteRenderer;
     
+    public float newSize = 5f; // Yeni kamera boyutu
+    public Camera targetCamera; 
+    
     // Define the trigger radius variable
     public float triggerRadius = 1.0f; // Adjust this value as needed
+    public string ScenceName;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        Debug.Log("PlayerEvolution script started. Trigger radius: " + triggerRadius);
+      
     }
 
     void Update()
     {
         // Check for enemy death within trigger radius
         Collider2D[] enemiesHit = Physics2D.OverlapCircleAll(transform.position, triggerRadius);
-        Debug.Log("Checking for enemies within trigger radius.");
+       
 
         foreach (Collider2D enemyCollider in enemiesHit)
         {
@@ -35,7 +40,7 @@ public class PlayerEvolution : MonoBehaviour
                 Debug.Log("Found enemy: " + enemyCollider.gameObject.name);
                 if (enemyHealth.IsDead()) // Ensure EnemyHealth has IsDead method
                 {
-                    Debug.Log("FoundEnemyIsDed");
+                   
                     kills++;
                     CheckForEvolution();
                     enemyHealth.GetComponent<EnemyHealth>()?.Die();
@@ -49,31 +54,34 @@ public class PlayerEvolution : MonoBehaviour
         Debug.Log("Cehecking for EVO");
         if (kills >= killThreshold && currentEvolution < maxEvolutions)
         {
-            Debug.Log("Evolution criteria met! Kills: " + kills + ", Current evolution: " + currentEvolution);
+           
             kills -= killThreshold; // Reset kill count for next evolution
             currentEvolution++;
             spriteRenderer.sprite = evolutionSprites[currentEvolution];
 
             // Update other relevant player attributes (optional)
             // e.g., increase movement speed, firing rate, damage, etc.
-            // UpdatePlayerStats(currentEvolution);
+             UpdatePlayerStats(currentEvolution);
         }
     }
 
     // Optional function to update player stats based on evolution level
-    void UpdatePlayerStats(int evolutionLevel)
+    void UpdatePlayerStats(int currentEvolution)
     {
         // Implement logic to modify player stats based on evolution level
-        switch (evolutionLevel)
+        switch (currentEvolution)
         {
             case 1:
-                // Increase movement speed by 10%
+                ChangeCameraSize(7f,targetCamera);
                 break;
             case 2:
-                // Increase firing rate by 20%
+                ChangeCameraSize(9f,targetCamera);
                 break;
             case 3:
-                // Increase bullet damage by 30%
+                ChangeCameraSize(10f,targetCamera);
+                break;
+            case 4:
+                LoadSceneByName(ScenceName);
                 break;
             default:
                 break;
@@ -84,5 +92,15 @@ public class PlayerEvolution : MonoBehaviour
     {
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, triggerRadius);
+    }
+    
+    void ChangeCameraSize(float newSize, Camera camera)
+    {
+        camera.orthographicSize = newSize;
+    }
+    public void LoadSceneByName(string sceneName)
+    {
+        // SceneManager.LoadScene() fonksiyonu ile adı verilen sahneyi yükle
+        SceneManager.LoadScene(sceneName);
     }
 }

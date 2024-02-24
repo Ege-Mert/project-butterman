@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShootingEnemy : MonoBehaviour
 {
-public float speed;
+    public float speed;
     public float stoppingDistance;
     public float retreatDistance;
 
