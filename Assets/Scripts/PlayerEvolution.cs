@@ -63,11 +63,12 @@ public class PlayerEvolution : MonoBehaviour
            
             kills -= killThreshold; // Reset kill count for next evolution
             currentEvolution++;
+            UpdatePlayerStats(currentEvolution);
             spriteRenderer.sprite = evolutionSprites[currentEvolution];
 
             // Update other relevant player attributes (optional)
             // e.g., increase movement speed, firing rate, damage, etc.
-             UpdatePlayerStats(currentEvolution);
+             
         }
     }
 
@@ -80,18 +81,22 @@ public class PlayerEvolution : MonoBehaviour
             case 1:
                 ChangeCameraSize(7f,targetCamera);
                 SclaeUpdaet();
+                Debug.Log("Case1");
                 break;
             case 2:
                 ChangeCameraSize(9f,targetCamera);
                 SclaeUpdaet();
+                Debug.Log("Case2");
                 break;
             case 3:
                 ChangeCameraSize(10f,targetCamera);
                 SclaeUpdaet();
+                Debug.Log("Cas3");
                 break;
             case 4:
                 LoadSceneByName(ScenceName);
                 break;
+                Debug.Log("Case1");
             default:
                 break;
         }

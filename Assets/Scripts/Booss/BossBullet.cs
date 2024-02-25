@@ -18,7 +18,20 @@ public class BossBullet : MonoBehaviour
         player = GameObject.FindWithTag("Player").transform;
         target = new Vector2(player.position.x, player.position.y);
     }
-
+  private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            //player canını burada azaltıyorsun 
+            Debug.Log("sex");
+            DestroyAndParcalan();
+        }
+        else
+        {
+            DestroyAndParcalan();
+            Debug.Log("syok");
+        }
+    }
     private void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, target, spedd * Time.deltaTime);
@@ -28,18 +41,9 @@ public class BossBullet : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            //player canını burada azaltıyorsun 
-            DestroyAndParcalan();
-        }
-        else
-        {
-            DestroyAndParcalan();
-        }
-    }
+  
+
+  
 
     void DestroyAndParcalan()
     {

@@ -1106,9 +1106,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2653609717034653345, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -660148549, guid: d55ca54ae66311c478ecc66c653c2d5a, type: 3}
+    - target: {fileID: 5695187285851190035, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 6334123893643387918}
+    - target: {fileID: 6902822546920438323, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 6902822546920438323, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.19
+      objectReference: {fileID: 0}
     - target: {fileID: 7903346914821625281, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
       propertyPath: ScenceName
-      value: Map1.2
+      value: Map
       objectReference: {fileID: 0}
     - target: {fileID: 7903346914821625281, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
       propertyPath: targetCamera
@@ -1116,7 +1132,11 @@ PrefabInstance:
       objectReference: {fileID: 519420031}
     - target: {fileID: 7903346914821625281, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
       propertyPath: killThreshold
-      value: 8
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7903346914821625281, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+      propertyPath: maxEvolutions
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 7903346914821625281, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
       propertyPath: additionalScale.x
@@ -1144,7 +1164,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7903346914821625281, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
       propertyPath: evolutionSprites.Array.size
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7903346914821625281, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
       propertyPath: evolutionSprites.Array.data[0]
@@ -1181,8 +1201,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3640841284017070651, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6334123893643387918}
   m_SourcePrefab: {fileID: 100100000, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+--- !u!1 &6334123893643387917 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3640841284017070651, guid: cdd0aad48b8bbb4419ab7270905ce281, type: 3}
+  m_PrefabInstance: {fileID: 6334123893643387916}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &6334123893643387918
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6334123893643387917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1d365395e94bbb04585bcda8d0e2b3bd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &8753226597285194116
 PrefabInstance:
   m_ObjectHideFlags: 0

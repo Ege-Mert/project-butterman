@@ -8,10 +8,13 @@ public class CharacterController2D : MonoBehaviour
 
     private Rigidbody2D rigidbody2D;
     private Vector3 moveDir;
+    public Animator animator;
 
     private void Awake()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+         
     }
     private void Update()
     {
@@ -20,18 +23,23 @@ public class CharacterController2D : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W)){
             moveY = +1f;
+            
+            
         }
         
         if (Input.GetKey(KeyCode.S)){
             moveY = -1f;
+            
         }
         
         if (Input.GetKey(KeyCode.A)){
             moveX = -1f;
+            
         }
 
         if (Input.GetKey(KeyCode.D)){
             moveX = +1f;
+            
         }
         
         moveDir = new Vector3(moveX, moveY).normalized;
