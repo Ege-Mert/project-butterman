@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour
 {
     public int healthMax = 100;
-    public int health;
+    public int playerHealth;
 
     public PlayerHealthBar healthBar;
     public GameManagerScript gameManager;
@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Start()
     {
-        health = healthMax;
+        playerHealth = healthMax;
         healthBar.SetMaxHealth(healthMax);
     }
 
@@ -27,14 +27,15 @@ public class PlayerHealth : MonoBehaviour
     {
         if (!isInvincible)
         {
-            health -= damage;
-            healthBar.SetHealth(health);
+            playerHealth -= damage;
+            healthBar.SetHealth(playerHealth);
 
-            if (health <= 0 && !isDead)
+            if (playerHealth <= 0 && !isDead)
             {
-                isDead = true;
+                Debug.Log("PlayerDed");
                 gameManager.gameOver();
-                Destroy(gameObject);
+                isDead = true;
+                Debug.Log("PlayerDed2");
             }
             else
             {

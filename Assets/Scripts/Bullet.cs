@@ -14,6 +14,11 @@ public class Bullet : MonoBehaviour
         if (enemy != null){
             enemy.TakeDamage(damage);
         }
+        BoosAtack boss = hitInfo.GetComponent<BoosAtack>();
+        if (boss != null){
+            Debug.Log("Getting the info");
+            boss.BossTakeDamage(damage);
+        }
         Destroy(gameObject);
     }
 }

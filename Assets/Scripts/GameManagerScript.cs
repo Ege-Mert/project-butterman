@@ -6,16 +6,17 @@ using UnityEngine.SceneManagement;
 public class GameManagerScript : MonoBehaviour
 {
     public GameObject gameOverUI;
-    public GameObject gameWonUI;
     void Start()
     {
     }
 
     void Update()
     {
-        if(gameOverUI.activeInHierarchy || gameWonUI.activeInHierarchy)
-        { Cursor.visible = true;
-         Cursor.lockState = CursorLockMode.None;
+        if(gameOverUI.activeInHierarchy)
+        {
+             
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
         else
         {
@@ -23,11 +24,10 @@ public class GameManagerScript : MonoBehaviour
         }
     }
     public void gameOver(){
+        Debug.Log("GameOverScreen");
         gameOverUI.SetActive(true);
     }
-    public void gameWon(){
-        gameWonUI.SetActive(true);
-    }
+
     public void restart(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

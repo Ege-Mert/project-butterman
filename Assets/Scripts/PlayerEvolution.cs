@@ -17,7 +17,7 @@ public class PlayerEvolution : MonoBehaviour
     public Camera targetCamera; 
     
     // Define the trigger radius variable
-    public float triggerRadius = 1.0f; // Adjust this value as needed
+    public float triggerRadius = 3.0f; // Adjust this value as needed
     public string ScenceName;
     
     public Vector3 additionalScale = new Vector3(0.2f, 0.2f, 0.2f); // Ek olarak uygulanacak ölçek değeri

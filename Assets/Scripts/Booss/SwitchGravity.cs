@@ -6,27 +6,27 @@ public class SwitchGravity : MonoBehaviour
 {
     private Rigidbody2D _rigidbody2D;
     public BoosAtack _boosAtack;
-    private bool fonkCagır;
-    private bool fonkCagır2;
+    private bool fonkCagir;
+    private bool fonkCagir2;
     void Start()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
         _boosAtack = FindObjectOfType<BoosAtack>();
-        fonkCagır = true;
-        fonkCagır2 = true;
+        fonkCagir = true;
+        fonkCagir2 = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (_boosAtack.changeGravity&& fonkCagır)
+        if (_boosAtack.changeGravity&& fonkCagir)
         {
             StartCoroutine(GravityExchange());
             
             
         }
         
-        if (_boosAtack.FazeTwoGravity&& fonkCagır2)
+        if (_boosAtack.FazeTwoGravity&& fonkCagir2)
         {
             StartCoroutine(ExchangeFazeTwoGravity());
             Debug.Log("sex");
@@ -38,19 +38,19 @@ public class SwitchGravity : MonoBehaviour
 
     IEnumerator GravityExchange()
     {
-        fonkCagır = false;
+        fonkCagir = false;
         _rigidbody2D.gravityScale *= -1;
         yield return new WaitForSecondsRealtime(7f);
-        fonkCagır = true;
+        fonkCagir = true;
     }
 
     IEnumerator ExchangeFazeTwoGravity()
     {
-        fonkCagır2 = false;
-        float gravity= Random.Range(-5f, 5f);
+        fonkCagir2 = false;
+        float gravity= Random.Range(-50f, 50f);
         _rigidbody2D.gravityScale = gravity;
         yield return new WaitForSecondsRealtime(5f);
         _rigidbody2D.gravityScale = 1f;
-        fonkCagır2 = true;
+        fonkCagir2 = true;
     }
 }

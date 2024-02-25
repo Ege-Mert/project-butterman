@@ -183,7 +183,7 @@ MonoBehaviour:
   playerHealth: {fileID: 0}
   startTimeBtwShots: 2
   detectionRadius: 40
-  BulletExit: {fileID: 0}
+  BulletExit: {fileID: 5820970198073863196}
 --- !u!114 &5690401379053500528
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +11,6 @@ public class ShootingEnemy : MonoBehaviour
     public GameObject bullet;
     public Transform player;
     public int damage;
-    public PlayerHealth playerHealth;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
@@ -65,27 +63,23 @@ public class ShootingEnemy : MonoBehaviour
             }
         }
     }
-    
-
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, detectionRadius);
-    }
-
-    void OnCollisionStay2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "Player"){
-            playerHealth.TakeDamage(damage); 
-            
-        }
-    }
 
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            // Ensure PlayerHealth script exists on the player object
+            if (player.GetComponent<PlayerHealth>() != null)
+            {
+                player.GetComponent<PlayerHealth>().TakeDamage(damage);
+            }
             Destroy(gameObject);
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, detectionRadius);
     }
 }

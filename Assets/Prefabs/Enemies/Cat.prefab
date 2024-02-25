@@ -178,8 +178,7 @@ MonoBehaviour:
   retreatDistance: 12
   bullet: {fileID: 200442778100554726, guid: 85351540bb09a5f4491753dff7fa25df, type: 3}
   player: {fileID: 0}
-  damage: 0
-  playerHealth: {fileID: 0}
+  damage: 5
   startTimeBtwShots: 100
   detectionRadius: 40
   BulletExit: {fileID: 0}

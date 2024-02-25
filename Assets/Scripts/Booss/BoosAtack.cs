@@ -5,6 +5,8 @@ using Unity.Jobs.LowLevel.Unsafe;
 using Unity.Mathematics;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
+
 
 public class BoosAtack : MonoBehaviour
 {
@@ -12,12 +14,16 @@ public class BoosAtack : MonoBehaviour
    public float startBtwShoot;
    public GameObject bossBullet;
    public GameObject bulletExit;
-   public float BossHealth=75f;//Bunu değiştirirsin.
+   public float BossHealth=5000f;//Bunu değiştirirsin.
    public bool changeGravity;
    private float WaitForChangeGravity;
    public bool ackapa;
    private bool kapaac;
    public bool FazeTwoGravity;
+
+
+   public BossHealthSlider bossHealthBar;
+
    [SerializeField] private Animator _animator;
    
    
@@ -30,7 +36,7 @@ public class BoosAtack : MonoBehaviour
       changeGravity = false;
       ackapa = true;
       kapaac = true;
-      _animator.SetBool("fazeTwo",false);
+      bossHealthBar.SetMaxBossHealth(BossHealth);
    }
 
    private void Update()
@@ -38,13 +44,13 @@ public class BoosAtack : MonoBehaviour
       int i = Random.Range(1, 3);
       
       
-      if (BossHealth>25&& BossHealth<=50&& ackapa)
+      if (BossHealth>2500&& BossHealth<=5000&& ackapa)
       {
          StartCoroutine(GravityScaler());
 
       }
 
-      if (BossHealth<= 25 && kapaac)
+      if (BossHealth<= 2500 && kapaac)
       {
          FazeTwo();
          Debug.Log("FazeTwoFonkÇağırıldı");
@@ -68,7 +74,16 @@ public class BoosAtack : MonoBehaviour
       {
          timeBtwShoot -= Time.deltaTime;
       }
+      if (IsDead()){
+         BossDie();
+      }
       
+   }
+
+   private bool IsDead()
+   {
+      Debug.Log("Boss Ded");
+      return BossHealth <= 0;
    }
    
 
@@ -92,6 +107,8 @@ public class BoosAtack : MonoBehaviour
       Instantiate(bossBullet, bulletExit.transform.position, Quaternion.identity);
       yield return new WaitForSeconds(0.2f);
    }
+
+
    //*************************************************************************************************************************************
 
    void FazeTwo()
@@ -107,11 +124,23 @@ public class BoosAtack : MonoBehaviour
       Debug.Log("Ienumeratorde çalışıyore");
       kapaac = false;
       FazeTwoGravity = true;
-      WaitForChangeGravity= Random.Range(5f, 10f);
+      WaitForChangeGravity= Random.Range(2f, 4f);
       yield return new WaitForSeconds(WaitForChangeGravity);
       FazeTwoGravity = false;
       yield return new WaitForSeconds(WaitForChangeGravity);
       kapaac = true;
+   }
+
+   public void BossTakeDamage(int damage){
+      Debug.Log("Boss taking damage");
+      BossHealth -= damage;
+      bossHealthBar.SetBossHealth((int)BossHealth);
+   }
+
+
+   private void BossDie(){
+      SceneManager.LoadScene("EndingScene");
+      
    }
 
 }
