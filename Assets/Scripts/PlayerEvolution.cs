@@ -19,10 +19,16 @@ public class PlayerEvolution : MonoBehaviour
     // Define the trigger radius variable
     public float triggerRadius = 1.0f; // Adjust this value as needed
     public string ScenceName;
+    
+    public Vector3 additionalScale = new Vector3(0.2f, 0.2f, 0.2f); // Ek olarak uygulanacak ölçek değeri
+    public Vector3 additionalScaleforBox = new Vector3(1f, 1f, 1f); // Ek olarak uygulanacak ölçek değeri
+    private BoxCollider boxCollider;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        boxCollider = GetComponent<BoxCollider>();
+
       
     }
 
@@ -73,12 +79,15 @@ public class PlayerEvolution : MonoBehaviour
         {
             case 1:
                 ChangeCameraSize(7f,targetCamera);
+                SclaeUpdaet();
                 break;
             case 2:
                 ChangeCameraSize(9f,targetCamera);
+                SclaeUpdaet();
                 break;
             case 3:
                 ChangeCameraSize(10f,targetCamera);
+                SclaeUpdaet();
                 break;
             case 4:
                 LoadSceneByName(ScenceName);
@@ -102,5 +111,31 @@ public class PlayerEvolution : MonoBehaviour
     {
         // SceneManager.LoadScene() fonksiyonu ile adı verilen sahneyi yükle
         SceneManager.LoadScene(sceneName);
+    }
+
+    void SclaeUpdaet()
+    {
+        // Oyun nesnesinin mevcut ölçeğini al
+        Vector3 currentScale = transform.localScale;
+
+        // Ek ölçeği mevcut ölçeğe ekle
+        Vector3 newScale = currentScale + additionalScale;
+
+        // Oyun nesnesinin ölçeğini güncelle
+        transform.localScale = newScale;
+    }
+
+    void BoxScaleUpdate()
+    {
+       
+            // Mevcut boyutları al
+            Vector3 currentSize = boxCollider.size;
+
+            // Ek ölçeği mevcut boyutlara ekle
+            Vector3 newSize = currentSize + additionalScale;
+
+            // BoxCollider'ın boyutlarını güncelle
+            boxCollider.size = newSize;
+        
     }
 }

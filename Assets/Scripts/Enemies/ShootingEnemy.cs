@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class ShootingEnemy : MonoBehaviour
     public float detectionRadius;
 
     private bool isChasing = false;
+    public GameObject BulletExit;
 
     void Start()
     {
@@ -54,7 +56,7 @@ public class ShootingEnemy : MonoBehaviour
 
             if (timeBtwShots <= 0)
             {
-                Instantiate(bullet, transform.position, Quaternion.identity);
+                Instantiate(bullet, BulletExit.transform.position, Quaternion.identity);
                 timeBtwShots = startTimeBtwShots;
             }
             else
@@ -74,7 +76,16 @@ public class ShootingEnemy : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Player"){
-            playerHealth.TakeDamage(damage);   
+            playerHealth.TakeDamage(damage); 
+            
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
         }
     }
 }
